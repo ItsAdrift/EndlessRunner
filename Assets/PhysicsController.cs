@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PhysicsController : MonoBehaviour
 {
+    [SerializeField] float gravity;
+
+    private void Awake()
+    {
+        Vector2 g = Physics2D.gravity;
+        g.y = gravity;
+        Physics2D.gravity = g;
+    }
 
     // Update is called once per frame
     void Update()
