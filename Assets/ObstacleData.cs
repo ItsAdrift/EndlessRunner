@@ -11,4 +11,9 @@ public class ObstacleData : MonoBehaviour
     {
         GameManager.Instance.points++;
     }
+
+    public void SwapGravity()
+    {
+        FindObjectOfType<PhysicsController>().SwapGravity();
+    }
 }

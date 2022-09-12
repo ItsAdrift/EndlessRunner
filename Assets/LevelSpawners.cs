@@ -11,9 +11,16 @@ public class LevelSpawners : MonoBehaviour
     public void Awake()
     {
         GameObject lastObs = null;
+        int lastIndex = 0;
        for (int i = 0; i < amount; i++)
         {
-            GameObject obj = Instantiate(obstacles[getRandomIndex()].prefab);
+            int index = getRandomIndex();
+            while (index == lastIndex)
+            {
+                index = getRandomIndex();
+            }
+            lastIndex = index;
+            GameObject obj = Instantiate(obstacles[index].prefab);
             if (lastObs == null)
             {
                 obj.transform.position = transform.position;

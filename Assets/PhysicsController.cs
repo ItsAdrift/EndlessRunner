@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PhysicsController : MonoBehaviour
 {
+    [SerializeField] bool allowPlayerControl = true;
+    [Space]
+
     [SerializeField] float gravity;
+
+    [SerializeField] float time;
+    float t;
 
     private void Awake()
     {
@@ -16,9 +22,19 @@ public class PhysicsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && allowPlayerControl)
         {
-            Physics2D.gravity *= -1;
+            if (Time.time > t)
+            {
+                SwapGravity();
+            }
         }
     }
+
+    public void SwapGravity()
+    {
+        Physics2D.gravity *= -1;
+        t = Time.time + time;
+    }
+
 }
